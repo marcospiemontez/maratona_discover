@@ -4,7 +4,7 @@ const routes = express.Router()
 const profile =
 {
     name: "Marcos",
-    avatar: "https://avatars.githubusercontent.com/u/79537800?v=4",
+    avatar: "https://github.com/marcospiemontez.png",
     monthlyBudget: 3000,
     hoursPerDay: 7,
     daysPerWeek: 5,
