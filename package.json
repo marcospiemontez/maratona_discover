@@ -1,0 +1,16 @@
+{
+  "name": "maratona_discover",
+  "version": "1.0.0",
+  "main": "src/server.js",
+  "repository": "git@github.com:marcospiemontez/maratona_discover.git",
+  "author": "Marcos Piemontez <marcos.piemontez1@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon ."
+  },
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15"
+  }
+}
