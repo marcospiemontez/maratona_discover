@@ -18,7 +18,7 @@
 <br>
 
 <p align="center">
-  <img alt="dev.finances" src="https://github.com/rocketseat-education/maratona-discover-02/raw/main/.github/jobscalc.png" width="100%">
+  <img alt="dev.finances" src=".github/jobscalc.png" width="100%">
 </p>
 
 ## 🚀 Tecnologias
@@ -46,3 +46,5 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](.github/LICENSE.md) para mais detalhes.
 
 ---
+
+Feito com ♥ by Rocketseat :wave: [Participe da nossa comunidade!](https://discordapp.com/invite/gCRAFhc)
