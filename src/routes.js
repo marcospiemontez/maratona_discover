@@ -28,24 +28,24 @@ const jobs = [
   },
 ];
 
-const views = __dirname + "/views/";
+const views = __dirname + "/views/"
 
 function remainingDays(job) {
   // calculo de tempo restante
-  const remainingDays = job.totalHours / job.dailyHours.toFixed();
+  const remainingDays = (job.totalHours / job.dailyHours).toFixed()
 
-  const createdDate = new Date(job.createdAt);
-  const dueDay = createdDate.getDate() + Number(remainingDays);
-  const dueDateInMs = createdDate.setDate(dueDay);
+  const createdDate = new Date(job.createdAt)
+  const dueDay = createdDate.getDate() + Number(remainingDays)
+  const dueDateInMs = createdDate.setDate(dueDay)
 
-  const timeDiffInMs = dueDateInMs - Date.now();
+  const timeDiffInMs = dueDateInMs - Date.now()
 
   // transformar milissegundos em dias
-  const dayInMs = 1000 * 60 * 60 * 24;
-  const dayDiff = Math.floor(timeDiffInMs / dayInMs);
+  const dayInMs = 1000 * 60 * 60 * 24
+  const dayDiff = Math.floor(timeDiffInMs / dayInMs)
 
   // restam x dias
-  return dayDiff;
+  return dayDiff
 }
 
 routes.get("/", (req, res) => {
@@ -60,7 +60,7 @@ routes.get("/", (req, res) => {
     }
   })
 
-  return res.render(views + "index", { jobs: updatedJobs });
+  return res.render(views + "index", { jobs: updatedJobs })
 })
 
 routes.get("/job", (req, res) => res.render(views + "job"));
