@@ -29,9 +29,35 @@ const jobs = [
 
 const views = __dirname + "/views/";
 
-routes.get("/", (req, res) => {
+function remainingDays(job) {
+  // calculo de tempo restante
+  const remainingDays = (jobs.totalHours) / (jobs.dailyHours).toFixed()
+
+  const createdDate = new Date(jobs.createdAt)
+  const dueDay = createdDate.getDate() + Number(remainingDays)
+  const dueDateInMs = createdDate.setDate(dueDay)
+
+  const timeDiffInMs = dueDateInMs - Date.now()
   
-    
+  // transformar milissegundos em dias
+  const dayInMs = 1000 * 60 * 60 * 24
+  const dayDiff = Math.floor(timeDiffInMs / dayInMs)
+
+  // restam x dias
+  return dayDiff
+}
+
+routes.get("/", (req, res) => {
+  const updatedJobs = jobs.map((job) => {
+    const remaining = remainingDays(job)
+    const status = remaining <= 0 ? 'Done' : 'Progress'
+    return {
+      ...job,
+      remaining,
+      status
+    }
+  })
+
   return res.render(views + "index", { jobs });
 });
 
