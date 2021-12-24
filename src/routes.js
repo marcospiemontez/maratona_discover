@@ -8,21 +8,22 @@ const profile = {
   hoursPerDay: 7,
   daysPerWeek: 5,
   vacationPerYear: 4,
+  valueHour: 75
 };
 
 const jobs = [
   {
     id: 1,
     name: "Pizzaria",
-    dailyHours: 2,
-    totalHours: 60,
+    dailyHours: 1,
+    totalHours: 1,
     createdAt: Date.now(),
   },
   {
     id: 2,
     name: "Panificadora",
-    dailyHours: 3,
-    totalHours: 46,
+    dailyHours: 2,
+    totalHours: 26,
     createdAt: Date.now(),
   },
 ];
@@ -31,35 +32,36 @@ const views = __dirname + "/views/";
 
 function remainingDays(job) {
   // calculo de tempo restante
-  const remainingDays = (jobs.totalHours) / (jobs.dailyHours).toFixed()
+  const remainingDays = job.totalHours / job.dailyHours.toFixed();
 
-  const createdDate = new Date(jobs.createdAt)
-  const dueDay = createdDate.getDate() + Number(remainingDays)
-  const dueDateInMs = createdDate.setDate(dueDay)
+  const createdDate = new Date(job.createdAt);
+  const dueDay = createdDate.getDate() + Number(remainingDays);
+  const dueDateInMs = createdDate.setDate(dueDay);
 
-  const timeDiffInMs = dueDateInMs - Date.now()
-  
+  const timeDiffInMs = dueDateInMs - Date.now();
+
   // transformar milissegundos em dias
-  const dayInMs = 1000 * 60 * 60 * 24
-  const dayDiff = Math.floor(timeDiffInMs / dayInMs)
+  const dayInMs = 1000 * 60 * 60 * 24;
+  const dayDiff = Math.floor(timeDiffInMs / dayInMs);
 
   // restam x dias
-  return dayDiff
+  return dayDiff;
 }
 
 routes.get("/", (req, res) => {
   const updatedJobs = jobs.map((job) => {
-    const remaining = remainingDays(job)
-    const status = remaining <= 0 ? 'Done' : 'Progress'
+    const remaining = remainingDays(job);
+    const status = remaining <= 0 ? "done" : "progress";
     return {
       ...job,
       remaining,
-      status
+      status,
+      budget: profile.valueHour * job.totalHours
     }
   })
 
-  return res.render(views + "index", { jobs });
-});
+  return res.render(views + "index", { jobs: updatedJobs });
+})
 
 routes.get("/job", (req, res) => res.render(views + "job"));
 
